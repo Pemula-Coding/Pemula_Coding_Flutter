@@ -25,6 +25,12 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
   build-ios:
     runs-on: macos-latest
     steps:
@@ -41,6 +47,12 @@ jobs:
 
       - name: Build iOS
         run: flutter build ios --release --no-codesign
+
+      - name: Upload iOS build
+        uses: actions/upload-artifact@v3
+        with:
+          name: ios-release
+          path: build/ios/ipa/*.ipa
 
   build-web:
     runs-on: ubuntu-latest
@@ -79,6 +91,12 @@ jobs:
       - name: Build Windows
         run: flutter build windows --release
 
+      - name: Upload Windows build
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-release
+          path: build/windows/runner/Release/*.exe
+
   build-macos:
     runs-on: macos-latest
     steps:
@@ -92,6 +110,12 @@ jobs:
 
       - name: Build macOS
         run: flutter build macos --release
+
+      - name: Upload macOS build
+        uses: actions/upload-artifact@v3
+        with:
+          name: macos-release
+          path: build/macos/Build/Products/Release/*.app
 
   build-linux:
     runs-on: ubuntu-latest
@@ -111,3 +135,8 @@ jobs:
       - name: Build Linux
         run: flutter build linux --release
 
+      - name: Upload Linux build
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux-release
+          path: build/linux/Release/*.app
