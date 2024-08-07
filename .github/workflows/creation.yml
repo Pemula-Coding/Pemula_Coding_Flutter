@@ -16,7 +16,8 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.19.0
+          channel: stable
+          #flutter-version: 3.19.0 --Error
           
       - name: Install dependencies
         run: flutter pub get
@@ -61,7 +62,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           publish_dir: build/web
 
   build-windows:
